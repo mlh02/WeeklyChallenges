@@ -27,7 +27,24 @@ namespace ChallengesWithTestsMark8
 
         public string TurnWordsIntoSentence(string[] words)
         {
-            throw new NotImplementedException();
+            if (words == null)
+            {
+                return "";
+            }
+
+            string final = "";
+            foreach (var word in words)
+            {
+                if (word.Trim() != "")
+                {
+                    final += word.Trim() + " ";
+                }
+            }
+            if(final.Length == 0)
+            {
+                return "";
+            }
+            return final.Trim() + ".";
         }
 
         public double[] GetEveryFourthElement(List<double> elements)
