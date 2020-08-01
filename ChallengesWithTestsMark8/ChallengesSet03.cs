@@ -115,13 +115,20 @@ namespace ChallengesWithTestsMark8
         }
         public int[] GetOddsBelow100()
         {
-            int[] odds = new int[50];
-            for(int i = 1; i < 101; i = + 2)
+            List<int> numbers = new List<int>();
+            for (int i = 0; i <= 100; i++)
             {
-                odds.Append(i);
+                if (i % 2 != 0)
+                {
+                    numbers.Add(i);
+                }
             }
-            return odds;
-
+            int[] numbers1 = new int[numbers.Count];
+            for (int j = 0; j < numbers.Count; j++)
+            {
+                numbers1[j] = numbers[j];
+            }
+            return numbers1;
         }
 
         public void ChangeAllElementsToUppercase(string[] words)

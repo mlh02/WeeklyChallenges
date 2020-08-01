@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.WebSockets;
 
 namespace ChallengesWithTestsMark8
 {
@@ -6,89 +9,198 @@ namespace ChallengesWithTestsMark8
     {
         public int AddEvenSubtractOdd(int[] numbers)
         {
-            int answer = 0;
-            foreach(var num in numbers)
+            var evens = 0;
+            var odds = 0;
+            foreach (var x in numbers)
             {
-                if(num % 2 == 0)
+                if (x % 2 == 0)
                 {
-                    answer += num;
+                    evens += x;
                 }
-                else
+                else if (x % 2 != 0)
                 {
-                    answer -= num;
+                    odds += x;
+                }
+            }
+            return evens - odds;
+        }
+
+        public int GetLengthOfShortestString(string str1, string str2, string str3, string str4)
+        {
+            var one = str1.Length;
+            var two = str2.Length;
+            var three = str3.Length;
+            var four = str4.Length;
+            if (one < two && one < three && one < four)
+            {
+                return one;
+            }
+            else if (two <= one && two < three && two < four)
+            {
+                return two;
+            }
+            else if (three <= one && three <= two && three < four)
+            {
+                return three;
+            }
+            else { return four; }
+        }
+
+        public int GetSmallestNumber(int number1, int number2, int number3, int number4)
+        {
+            var one = number1;
+            var two = number2;
+            var three = number3;
+            var four = number4;
+            if (one < two && one < three && one < four)
+            {
+                return one;
+            }
+            else if (two <= one && two < three && two < four)
+            {
+                return two;
+            }
+            else if (three <= one && three <= two && three < four)
+            {
+                return three;
+            }
+            else { return four; }
+        }
+
+        public void ChangeBusinessNameTo_TrueCoders(Business biz)
+        {
+            biz.Name = "TrueCoders";
+        }
+
+        public bool CouldFormTriangle(int sideLength1, int sideLength2, int sideLength3)
+        {
+            var answer = false;
+           
+            if (sideLength1 + sideLength2 > sideLength3)
+            {
+                if (sideLength2 + sideLength3 > sideLength1)
+                {
+                    if (sideLength1 + sideLength3 > sideLength2)
+                    {
+                        answer = true;
+                    }
                 }
             }
             return answer;
         }
 
-        public int GetLengthOfShortestString(string str1, string str2, string str3, string str4)
-        {
-            string shortest = str1;
-            if(shortest.Length > str2.Length)
-            {
-                shortest = str2;
-            }
-            if (shortest.Length > str3.Length)
-            {
-                shortest = str3;
-            }
-            if (shortest.Length > str4.Length)
-            {
-                shortest = str4;
-            }
-            return shortest.Length;
-        }
-
-        public int GetSmallestNumber(int number1, int number2, int number3, int number4)
-        {
-            int shortest = number1;
-            if ( shortest > number2 )
-            {
-                shortest = number2;
-            }
-            if (shortest > number3)
-            {
-                shortest = number3;
-            }
-            if (shortest > number4)
-            {
-                shortest = number4;
-            }
-            return shortest;
-        }
-
-        public void ChangeBusinessNameTo_TrueCoders(Business biz)
-        {
-            Console.WriteLine(biz);
-        }
-
-        public bool CouldFormTriangle(int sideLength1, int sideLength2, int sideLength3)
-        {
-            if (sideLength1 + sideLength2 <= sideLength3 || sideLength1 + sideLength3  <= sideLength2 ||
-                             sideLength2 + sideLength3 <= sideLength1)
-                return true;
-            else
-                return false;
-        }
-
         public bool IsStringANumber(string input)
         {
-            throw new NotImplementedException();
+            int a = 0;
+            if (input == null)
+            {
+                return false;
+            }
+            if (input.Length < 1)
+            {
+                return false;
+            }
+
+            foreach (var n in input)
+            {
+                if (char.IsDigit(n))
+                {
+                    a++;
+                }
+                else if (char.IsLetter(n))
+                {
+                    a += 0;
+                }
+                else if (char.IsSymbol(n))
+                {
+                    a += 0;
+                }
+                else if (n == '.')
+                {
+                    a++;
+                }
+                else if (n == '-')
+                {
+                    a++;
+                }
+
+            }
+            if (a == input.Length)
+            {
+                return true;
+            }
+            else { return false; }
         }
 
         public bool MajorityOfElementsInArrayAreNull(object[] objs)
         {
-            throw new NotImplementedException();
+            var count = 0;
+            foreach (var o in objs)
+            {
+                if (o == null)
+                {
+                    count++;
+                }
+            }
+            if (count > objs.Length / 2)
+            {
+                return true;
+            }
+            else { return false; }
         }
 
         public double AverageEvens(int[] numbers)
         {
-            throw new NotImplementedException();
+            if (numbers == null)
+            {
+                return 0;
+            }
+            var a = new List<double>();
+            double sum = 0;
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                if (numbers[i] % 2 == 0)
+                {
+                    a.Add(numbers[i]);
+                }
+            }
+            for (int i = 0; i < a.Count; i++)
+            {
+                sum += a[i];
+            }
+            if (a.Count == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                return sum / a.Count;
+            }
         }
 
         public int Factorial(int number)
         {
-            throw new NotImplementedException();
+            int fact = number;
+            if (fact < 0)
+            {
+                throw new ArgumentOutOfRangeException("age", "All factorials must be positive.");
+            }
+            if (fact == 0)
+            {
+                fact = 1;
+            }
+            for (int i = number - 1; i >= 1; i--)
+            {
+
+                if (i > 0)
+                {
+                    i = Math.Abs(i);
+                }
+                fact *= i;
+
+            }
+            return fact;
         }
     }
 }
+    

@@ -7,23 +7,55 @@ namespace ChallengesWithTestsMark8
     {
         public int GetNextNumberDivisibleByN(int startNumber, int n)
         {
-            throw new NotImplementedException();
+            return ((startNumber / n) + 1) * n;
         }
 
         public void ChangeNamesOfBusinessesWithNoRevenueTo_CLOSED(Business[] businesses)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < businesses.Length; i++)
+            {
+                if (businesses[i].TotalRevenue == 0)
+                {
+                    businesses[i].Name = "CLOSED";
+                }
+            }
         }
 
         public bool IsAscendingOrder(int[] numbers)
         {
-            throw new NotImplementedException();
+            if ((numbers == null) || (numbers.Length == 0))
+                return false;
+
+            for (int i = 1; i < numbers.Length; i++)
+            {
+                if (numbers[i] < numbers[i - 1])
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         public int SumElementsThatFollowAnEven(int[] numbers)
         {
-            throw new NotImplementedException();
+            int sum = 0;
+            if (numbers == null)
+            {
+                return 0;
+            }
+
+            for (int i = 1; i < numbers.Length; i++)
+            {
+                if (numbers[i - 1] % 2 == 0)
+                {
+                    sum += numbers[i];
+                }
+            }
+
+            return sum;
         }
+
 
         public string TurnWordsIntoSentence(string[] words)
         {
@@ -40,7 +72,7 @@ namespace ChallengesWithTestsMark8
                     final += word.Trim() + " ";
                 }
             }
-            if(final.Length == 0)
+            if (final.Length == 0)
             {
                 return "";
             }
@@ -49,12 +81,41 @@ namespace ChallengesWithTestsMark8
 
         public double[] GetEveryFourthElement(List<double> elements)
         {
-            throw new NotImplementedException();
+            List<double> everyFourth = new List<double>();
+            double[] answer = new double[] { };
+            if (elements == null)
+            {
+                return answer;
+            }
+
+
+            for (int i = 3; i < elements.Count; i += 4)
+            {
+                everyFourth.Add(elements[i]);
+            }
+            if (elements == null)
+            {
+                return null;
+            }
+
+            return everyFourth.ToArray();
+
         }
 
         public bool TwoDifferentElementsInArrayCanSumToTargetNumber(int[] nums, int targetNumber)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < nums.Length; i++)
+            {
+                for (int k = i + 1; k < nums.Length; k++)
+                {
+                    if (nums[i] + nums[k] == targetNumber)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
     }
 }
